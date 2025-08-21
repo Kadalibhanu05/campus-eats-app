@@ -1,0 +1,61 @@
+<%- include('partials/header') %>
+<div class="container mx-auto px-6 py-8 max-w-2xl">
+    <div class="bg-white p-8 rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold text-center">Checkout</h1>
+        <form id="checkout-form" action="/place-order" method="POST">
+            <div class="mt-6">
+                <h2 class="text-xl font-semibold">Order Summary from <span class="text-indigo-600"><%= canteenName %></span></h2>
+                
+                <% if (items && items.length > 0) { %>
+                    <ul class="divide-y divide-gray-200 mt-4">
+                        <% let total = 0; %>
+                        <% items.forEach(item => { %>
+                            <% total += item.price * item.quantity; %>
+                            <li class="py-3 flex justify-between">
+                                <span><%= item.name %> <span class="text-gray-500 font-semibold">x<%= item.quantity %></span></span>
+                                <span class="font-semibold">₹<%= (item.price * item.quantity).toFixed(2) %></span>
+                            </li>
+                        <% }); %>
+                        <li class="py-3 flex justify-between font-bold text-lg border-t-2 border-gray-300">
+                            <span>Total</span>
+                            <span>₹<%= total.toFixed(2) %></span>
+                        </li>
+                    </ul>
+                <% } else { %>
+                    <p class="mt-4 text-gray-500 text-center py-8">Your cart is empty.</p>
+                <% } %>
+            </div>
+            
+            <% if (items && items.length > 0) { %>
+                <!-- New Address Section -->
+                <div class="mt-8">
+                    <h2 class="text-xl font-semibold">Delivery Address</h2>
+                    <div class="mt-4">
+                        <label for="address" class="block text-sm font-medium text-gray-700">Hostel Block / Department Name</label>
+                        <input type="text" name="address" id="address" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., A Block, Room 101" required>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <h2 class="text-xl font-semibold">Select Payment Method</h2>
+                    <div class="space-y-3 mt-4">
+                        <label class="flex items-center p-4 border rounded-lg has-[:checked]:bg-indigo-50 has-[:checked]:border-indigo-500">
+                            <input type="radio" name="paymentMethod" value="upi" class="h-4 w-4 text-indigo-600 payment-option">
+                            <span class="ml-3 font-medium">Pay with UPI</span>
+                        </label>
+                        <label class="flex items-center p-4 border rounded-lg has-[:checked]:bg-indigo-50 has-[:checked]:border-indigo-500">
+                            <input type="radio" name="paymentMethod" value="card" class="h-4 w-4 text-indigo-600 payment-option">
+                            <span class="ml-3 font-medium">Pay with Card</span>
+                        </label>
+                        <label class="flex items-center p-4 border rounded-lg has-[:checked]:bg-indigo-50 has-[:checked]:border-indigo-500">
+                            <input type="radio" name="paymentMethod" value="cod" class="h-4 w-4 text-indigo-600 payment-option">
+                            <span class="ml-3 font-medium">Cash on Delivery</span>
+                        </label>
+                    </div>
+                </div>
+                <button id="place-order-btn" type="submit" class="w-full px-4 py-3 mt-8 font-bold text-white bg-indigo-600 rounded-lg shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Place Order</button>
+            <% } %>
+        </form>
+    </div>
+</div>
+<%- include('partials/footer') %>
