@@ -1,0 +1,19 @@
+<%- include('partials/header') %>
+<div class="container py-8">
+    <h1 class="text-3xl font-bold">Canteens at <span class="text-indigo-600"><%= university %></span></h1>
+    <% if (canteens.length > 0) { %>
+        <div class="grid grid-cols-1 grid-cols-2 grid-cols-3 gap-6 mt-6">
+            <% canteens.forEach(canteen => { %>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden" style="transition:transform 0.2s;">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold"><%= canteen.name %></h3>
+                        <a href="/menu/<%= canteen.id %>" class="text-indigo-600 mt-4 inline-block font-semibold">View Menu &rarr;</a>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    <% } else { %>
+        <p class="mt-6 text-gray-600">Sorry, no canteens found for this university yet.</p>
+    <% } %>
+</div>
+<%- include('partials/footer') %>

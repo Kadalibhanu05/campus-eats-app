@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+<section class="bg-white">
+    <div class="container text-center py-24">
+        <h1 class="text-4xl font-extrabold text-gray-900">Craving something from the canteen?</h1>
+        <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Get your favorite campus food delivered right to your block.</p>
+        <div class="mt-8 max-w-2xl mx-auto">
+            <form action="/canteens" method="GET" class="flex flex-col flex-row gap-2 items-center">
+                <div class="relative w-full">
+                    <input type="text" name="university" list="university-list" placeholder="Enter your university name" class="input w-full" required>
+                    <datalist id="university-list">
+                        <% universities.forEach(uni => { %>
+                            <option value="<%= uni %>">
+                        <% }); %>
+                    </datalist>
+                </div>
+                <button type="submit" class="btn w-full">Find Food</button>
+            </form>
+        </div>
+    </div>
+</section>
+<%- include('partials/footer') %>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Eats</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="brand">Campus Eats</a>
+            <div class="nav-links" style="display: flex; align-items: center;">
+                <a href="/add-canteen">Add Canteen</a>
+                <a href="/deliverers">Become a Deliverer</a>
+                <a href="/help">Help</a>
+            </div>
+            <div class="user-auth" style="display: flex; align-items: center;">
+                <% if (user) { %>
+                    <span style="font-weight:600;margin-right:8px;">Welcome, <%= user.name %>!</span>
+                    <a href="/logout" class="logout">Logout</a>
+                <% } else { %>
+                    <a href="/login" class="login">Log In</a>
+                    <a href="/signup" class="signup">Sign Up</a>
+                <% } %>
+            </div>
+        </nav>
+    </header>
+    <main>
