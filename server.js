@@ -8,6 +8,7 @@ const session = require('express-session');
 const app = express();
 // const PORT = 3000;
 const PORT = process.env.PORT || 3000;
+app.use(express.static(path.join(__dirname, 'public')));
 
 // --- Database Connection (for local MongoDB) ---
 const dbURI = 'mongodb://127.0.0.1:27017/campus-eats';
