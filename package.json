@@ -1,5 +1,5 @@
 {
-  "name": "campu-eats(chatgpt)",
+  "name": "campu-eats-website",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
